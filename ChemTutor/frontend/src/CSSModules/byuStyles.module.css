@@ -1,0 +1,34 @@
+/* 
+  BYU Theme Components handle most header styling via the web component.
+  These styles handle the nav link active states and any overrides needed
+  to integrate with the BYU theme.
+*/
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s;
+}
+
+.navLink:hover {
+  opacity: 0.85;
+}
+
+.navLinkActive {
+  font-weight: 600;
+}
+
+.loginLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoutLink {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}

@@ -1,0 +1,199 @@
+/* ─── Layout ─────────────────────────────────────────────── */
+
+.page {
+  padding: 2rem 1.5rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.headerText h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.headerText p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0 0;
+}
+
+/* ─── Dashboard intro ────────────────────────────────────── */
+
+.pageIntro {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pageIntro h1 {
+  font-size: 2rem;
+  color: #212529;
+  margin: 0 0 0.5rem;
+}
+
+.pageIntro p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── Earl Modal ────────────────────────────────────── */
+.container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    font-family: inherit;
+}
+
+.bubbleButton {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: #002e5d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.logo {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.chatWindow {
+    width: 320px;
+    height: 420px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background-color: #002e5d;
+    color: #fff;
+}
+
+.headerLogo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.headerTitle {
+    font-weight: 600;
+    flex: 1;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #f7f7f8;
+}
+
+.emptyState {
+    margin: auto;
+    color: #999;
+    font-size: 14px;
+}
+
+.bubble {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.userBubble {
+    align-self: flex-end;
+    background-color: #002e5d;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.earlBubble {
+    align-self: flex-start;
+    background-color: #e5e5ea;
+    color: #000;
+    border-bottom-left-radius: 4px;
+}
+
+.inputRow {
+    display: flex;
+    border-top: 1px solid #eee;
+    padding: 8px;
+    gap: 8px;
+}
+
+.input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.sendButton {
+    background-color: #002e5d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 14px;
+}
