@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import styles from "../CSSModules/base.module.css";
 
@@ -8,24 +9,28 @@ const cards = [
         description: "Personalizae your experience and track progress with a placement exam.",
         color: "blue",
         icon: "?",
+        to: "/prep_exam"
     },
     {
         title: "Practice Problems",
         description: "Work through problem sets tailored to your course.",
         color: "orange",
         icon: "✎",
+        to: "/practice"
     },
     {
         title: "Study Guides",
         description: "Browse topic summaries and formula sheets.",
         color: "green",
         icon: "📘",
+        to: "/study"
     },
     {
         title: "Past Sessions",
         description: "Review your tutoring history and saved answers.",
         color: "red",
         icon: "↻",
+        to: "/past"
     },
 ];
 
@@ -41,11 +46,14 @@ const Home: React.FC = () => {
 
             <div className="dashboardGrid">
                 {cards.map((card) => (
-                    <div className="card" key={card.title}>
-                        <div className={`cardIcon ${card.color}`}>{card.icon}</div>
-                        <h3>{card.title}</h3>
-                        <p>{card.description}</p>
-                    </div>
+                    <Link
+                        className="card"
+                        key={card.title}
+                        to={card.to}>
+                    <div className={`cardIcon ${card.color}`}>{card.icon}</div>
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                    </Link>
                 ))}
             </div>
         </div>
