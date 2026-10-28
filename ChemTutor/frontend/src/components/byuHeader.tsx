@@ -18,7 +18,7 @@ export default function BYUHeader() {
   return (
     <byu-header>
       <span slot="site-title">Chemistry Tutor</span>
-
+      
       <byu-menu slot="nav">
         <Link to={'/'}>
         Home

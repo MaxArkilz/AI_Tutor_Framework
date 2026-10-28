@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
+import { useTitle } from '../../hooks/useTitle';
 
 export default function ClassDetail() {
     const { classCode } = useParams();
+    useTitle(`${classCode?.toUpperCase() ?? 'Class'} | Chem Tutor`);
 
     return (
         <div style={{ padding: '64px 32px' }}>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from '../../CSSModules/classLanding.module.css';
 import { requiredClasses, type ClassInfo} from '../../data/classes';
 import { scatterBubbles } from "../../utils/classBubbles";
+import { useTitle } from "../../hooks/useTitle";
 
 const GROUPS = [
     { key: 'lower', label: '100 & 200 Level', levels: [100, 200]},
@@ -13,6 +14,7 @@ const GROUPS = [
 const BUBBLE_SIZE_PERCENT = 16;
 
 export default function ClassLanding() {
+    useTitle("Classes | Chem Tutor")
     const groupedClasses = useMemo(
         () =>
             GROUPS.map((group) => ({
@@ -25,7 +27,7 @@ export default function ClassLanding() {
     return (
         <div className={styles.page}>
             <header className={styles.intro}>
-                <h1 className={styles.header}>Classes</h1>
+                <h1 className={styles.heading}>Classes</h1>
                     <p className={styles.subheading}>
                         Browse courses by level. Pick a bubble to see what's inside.
                     </p>
