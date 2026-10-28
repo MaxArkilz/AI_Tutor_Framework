@@ -6,7 +6,7 @@ import styles from "../CSSModules/base.module.css";
 const cards = [
     {
         title: "Preparation Exam",
-        description: "Personalizae your experience and track progress with a placement exam.",
+        description: "Personalize your experience and track progress with a placement exam.",
         color: "blue",
         icon: "?",
         to: "/prep_exam"
