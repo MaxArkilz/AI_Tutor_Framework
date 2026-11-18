@@ -76,15 +76,16 @@ def to_login(request):
 
 #### ---- Okta Specific Views ---- ###
 oauth = OAuth()
-oauth.register(
-    "okta",
-    client_id=settings.OKTA_CLIENT_ID,
-    client_secret=settings.OKTA_CLIENT_SECRET,
-    client_kwargs={"scope": "openid profile email"},
-    server_metadata_url=(
-        f"https://{settings.OKTA_DOMAIN}/oauth2/default/.well-known/openid-configuration"
-    ),
-)
+if settings.AUTH_TYPE == 'OKTA':
+    oauth.register(
+        "okta",
+        client_id=settings.OKTA_CLIENT_ID,
+        client_secret=settings.OKTA_CLIENT_SECRET,
+        client_kwargs={"scope": "openid profile email"},
+        server_metadata_url=(
+            f"https://{settings.OKTA_DOMAIN}/oauth2/default/.well-known/openid-configuration"
+        ),
+    )
 
 def login(request):
     """
@@ -166,7 +167,8 @@ def get_or_create_user(user_info):
         user = User.objects.get(username=username)
         user.is_staff = bool(settings.FACULTY_GROUPS.intersection(groups))
         user.is_superuser = bool(settings.ADMIN_GROUPS.intersection(groups))
-        user.is_inspector = bool(settings.INSPECTOR_GROUPS.intersection(groups))
+        if hasattr(user, 'is_inspector'):
+            user.is_inspector = bool(settings.INSPECTOR_GROUPS.intersection(groups))
         user.save()
         return user
     else:

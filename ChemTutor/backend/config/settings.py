@@ -137,21 +137,48 @@ INSTALLED_APPS += [
     'rest_framework',
     'corsheaders',
     'api',
+    'assessments',
 ]
 
 MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT', default='5432'),
+if env('DB_ENGINE', default='postgresql') == 'sqlite':
+    # Explicit development/test option; PostgreSQL remains the default.
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME'),
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+            'PORT': env('DB_PORT', default='5432'),
+        }
     }
-}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+# Preserve the existing default user table. A fresh installation may opt into
+# byu_auth.NewUser before its first migration; never switch a populated DB here.
+AUTH_USER_MODEL = env('AUTH_USER_MODEL', default='auth.User')
+# SSO requires institution-specific credentials. Local development can use
+# Django's session login at /api-auth/login/ without importing SSO views.
+AUTH_TYPE = env('AUTH_TYPE', default='NONE').upper()
+FRONTEND_URL = env('FRONTEND_URL', default='http://localhost:5173')
+LOGIN_REDIRECT_URL = '/prep_exam'
+LOGOUT_REDIRECT_URL = '/'
+FACULTY_GROUPS = set(env.list('FACULTY_GROUPS', default=[]))
+ADMIN_GROUPS = set(env.list('ADMIN_GROUPS', default=[]))
+INSPECTOR_GROUPS = set(env.list('INSPECTOR_GROUPS', default=[]))
+for _name in (
+    'OKTA_CLIENT_ID', 'OKTA_CLIENT_SECRET', 'OKTA_DOMAIN', 'OKTA_LOGOUT_ENDPOINT',
+    'TOKEN_ENDPOINT', 'CAS_CLIENT_ID', 'CAS_CLIENT_SECRET', 'CAS_REDIRECT_URI',
+    'API_ID', 'API_SECRET', 'LOGIN_URL', 'LOGOUT_ENDPOINT',
+):
+    globals()[_name] = env(_name, default='')
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
+    'http://localhost:5173', 'http://127.0.0.1:5173',
+])

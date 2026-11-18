@@ -1,9 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
 from django.conf import settings
 # Create your models here.
 
 class NewUser(AbstractUser):
+    class Meta:
+        abstract = False
+        swappable = 'AUTH_USER_MODEL'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
+
     username = models.CharField(max_length=32, unique=True)
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
@@ -18,7 +25,7 @@ class NewUser(AbstractUser):
 def create_user(user_info):
     groups = user_info.get("groups", [])
     
-    user = NewUser()
+    user = get_user_model()()
     user.username = user_info["net_id"]
     user.first_name = user_info["first_name"]
     user.last_name = user_info["last_name"]
@@ -27,7 +34,8 @@ def create_user(user_info):
     # Set permssions using gro groups
     user.is_staff = bool(settings.FACULTY_GROUPS.intersection(groups))
     user.is_superuser = bool(settings.ADMIN_GROUPS.intersection(groups))
-    user.is_inspector = bool(settings.INSPECTOR_GROUPS.intersection(groups))
+    if hasattr(user, 'is_inspector'):
+        user.is_inspector = bool(settings.INSPECTOR_GROUPS.intersection(groups))
 
     # Set mandatory Django attributes
     user.set_unusable_password()  # Makes it so users can't log in without going through OKTA or CAS

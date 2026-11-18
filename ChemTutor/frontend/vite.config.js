@@ -4,4 +4,13 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api/': 'http://127.0.0.1:8000',
+      '/api-auth/': 'http://127.0.0.1:8000',
+      '/byu/': 'http://127.0.0.1:8000',
+      '/admin/': 'http://127.0.0.1:8000',
+      '/static/': 'http://127.0.0.1:8000',
+    },
+  },
 })
