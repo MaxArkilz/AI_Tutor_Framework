@@ -60,7 +60,7 @@ export default function PrepExam() {
     const previousSession = session;
     setError("");
     setLoginUrl(null);
-    setSession(previous => ({ ...previous, phase: "loading" }));
+    setSession((previous: Session) => ({ ...previous, phase: "loading" }));
     try {
       const nextAttempt = await examService.createAttempt();
       setAnswers({});
@@ -77,7 +77,7 @@ export default function PrepExam() {
 
   function updateAnswer(patch: Partial<Answer>) {
     if (!question) return;
-    setAnswers(previous => ({
+    setAnswers((previous: AnswerMap) => ({
       ...previous,
       [question.id]: { ...previous[question.id], ...patch },
     }));
@@ -88,16 +88,16 @@ export default function PrepExam() {
     busy.current = true;
     setError("");
     setLoginUrl(null);
-    setSession(previous => ({ ...previous, phase: "submitting" }));
+    setSession((previous: Session) => ({ ...previous, phase: "submitting" }));
     try {
       const nextResult = await examService.submitAttempt(attempt.id, answers);
       loadedAttemptId.current = nextResult.attemptId;
-      setSession(previous => ({ ...previous, phase: "results", result: nextResult }));
+      setSession((previous: Session) => ({ ...previous, phase: "results", result: nextResult }));
       setSearchParams({ attempt: nextResult.attemptId }, { replace: true });
     } catch (err) {
       if (err instanceof ExamApiError && err.loginUrl) setLoginUrl(err.loginUrl);
       setError(err instanceof Error ? err.message : "Could not submit your answers. Try again.");
-      setSession(previous => ({ ...previous, phase: "review" }));
+      setSession((previous: Session) => ({ ...previous, phase: "review" }));
     } finally { busy.current = false; }
   }
 
@@ -155,7 +155,7 @@ export default function PrepExam() {
             onClick={() => setIndex(i => i - 1)}>Previous</button>
           {index < attempt.questions.length - 1
             ? <button onClick={() => setIndex(i => i + 1)}>Next</button>
-            : <button onClick={() => setSession(s => ({ ...s, phase: "review" }))}>Review answers</button>}
+            : <button onClick={() => setSession((s: Session) => ({ ...s, phase: "review" }))}>Review answers</button>}
         </nav>
       </section>}
 
@@ -166,7 +166,7 @@ export default function PrepExam() {
         <ol className={styles["prep-exam__review-list"]}>
           {attempt.questions.map((q, i) => <li key={q.id}>
             <button className={styles["prep-exam__secondary"]} disabled={phase === "submitting"}
-              onClick={() => { setIndex(i); setSession(s => ({ ...s, phase: "exam" })); }}>
+              onClick={() => { setIndex(i); setSession((s: Session) => ({ ...s, phase: "exam" })); }}>
               Question {i + 1} — {answers[q.id]?.optionId ? "Answered" : "Unanswered"}
             </button>
           </li>)}

@@ -12,15 +12,22 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+
+env = environ.Env()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(str(BASE_DIR / '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ve8e+103#zuqc)wmr1i-cwlv58r^_qcd)rl1^-qs79n$n72hgw'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,9 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'api',
+    'assessments',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,12 +86,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME'),
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+            'PORT': env('DB_PORT', default='5432'),
+        }
     }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
@@ -117,46 +132,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
-# Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
-
-# --Appended by script, review and place in proper places--
-import environ
-
-env = environ.Env()
-environ.Env.read_env(str(BASE_DIR / '.env'))
-
-INSTALLED_APPS += [
-    'rest_framework',
-    'corsheaders',
-    'api',
-    'assessments',
-]
-
-MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
-
-if env('DB_ENGINE', default='postgresql') == 'sqlite':
-    # Explicit development/test option; PostgreSQL remains the default.
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DB_NAME'),
-            'USER': env('DB_USER'),
-            'PASSWORD': env('DB_PASSWORD'),
-            'HOST': env('DB_HOST'),
-            'PORT': env('DB_PORT', default='5432'),
-        }
-    }
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
@@ -164,6 +139,7 @@ CORS_ALLOWED_ORIGINS = [
 # Preserve the existing default user table. A fresh installation may opt into
 # byu_auth.NewUser before its first migration; never switch a populated DB here.
 AUTH_USER_MODEL = env('AUTH_USER_MODEL', default='auth.User')
+
 # SSO requires institution-specific credentials. Local development can use
 # Django's session login at /api-auth/login/ without importing SSO views.
 AUTH_TYPE = env('AUTH_TYPE', default='NONE').upper()
@@ -172,13 +148,13 @@ LOGIN_REDIRECT_URL = '/prep_exam'
 LOGOUT_REDIRECT_URL = '/'
 FACULTY_GROUPS = set(env.list('FACULTY_GROUPS', default=[]))
 ADMIN_GROUPS = set(env.list('ADMIN_GROUPS', default=[]))
-INSPECTOR_GROUPS = set(env.list('INSPECTOR_GROUPS', default=[]))
 for _name in (
     'OKTA_CLIENT_ID', 'OKTA_CLIENT_SECRET', 'OKTA_DOMAIN', 'OKTA_LOGOUT_ENDPOINT',
     'TOKEN_ENDPOINT', 'CAS_CLIENT_ID', 'CAS_CLIENT_SECRET', 'CAS_REDIRECT_URI',
     'API_ID', 'API_SECRET', 'LOGIN_URL', 'LOGOUT_ENDPOINT',
 ):
     globals()[_name] = env(_name, default='')
+
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
     'http://localhost:5173', 'http://127.0.0.1:5173',
 ])
