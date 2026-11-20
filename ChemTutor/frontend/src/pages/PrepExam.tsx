@@ -13,6 +13,13 @@ const STATUS_LABELS: Record<TopicStatus, string> = {
   "insufficient-evidence": "Not enough evidence",
 };
 
+const CONFIDENCE_LABELS = [
+  "Not set",
+  "Guessing",
+  "Somewhat sure",
+  "Very sure",
+] as const;
+
 /** UI orchestrator. The service owns question selection and scoring. */
 export default function PrepExam() {
   useTitle("Prep Exam | Chem Tutor");
@@ -29,6 +36,8 @@ export default function PrepExam() {
   const { phase, attempt, result } = session;
   const question = attempt?.questions[index];
   const answeredCount = attempt?.questions.filter(q => answers[q.id]?.optionId != null).length ?? 0;
+  const confidence = question ? answers[question.id]?.confidence ?? null : null;
+  const confidenceSliderValue = confidence ?? 0;
 
   useEffect(() => { heading.current?.focus(); }, [phase, index]);
 
@@ -139,12 +148,41 @@ export default function PrepExam() {
         <button className={styles["prep-exam__secondary"]} disabled={!answers[question.id]?.optionId}
           onClick={() => updateAnswer({ optionId: null })}>Clear answer</button>
         <div className={styles["prep-exam__optional"]} key={question.id}>
-          <label htmlFor="confidence">How confident are you? (optional)</label>
-          <select id="confidence" value={answers[question.id]?.confidence ?? ""}
-            onChange={e => updateAnswer({ confidence: e.target.value ? Number(e.target.value) as 1 | 2 | 3 : null })}>
-            <option value="">Prefer not to say</option>
-            <option value="1">Guessing</option><option value="2">Somewhat sure</option><option value="3">Very sure</option>
-          </select>
+            <div className={styles["prep-exam__confidence-heading"]}>
+              <label htmlFor="confidence">
+                How confident are you? (optional)
+              </label>
+              <span
+                className={styles["prep-exam__confidence-value"]}
+                aria-live="polite"
+              >
+                {CONFIDENCE_LABELS[confidenceSliderValue]}
+              </span>
+            </div>
+            <input
+              id="confidence"
+              className={styles["prep-exam__confidence-slider"]}
+              type="range"
+              min="0"
+              max="3"
+              step="1"
+              value={confidenceSliderValue}
+              aria-valuetext={CONFIDENCE_LABELS[confidenceSliderValue]}
+              onChange={(e) => {
+                const value = Number(e.currentTarget.value) as 0 | 1 | 2 | 3;
+                updateAnswer({
+                  confidence: value === 0 ? null : value,
+                });
+              }}
+            />
+            <div
+              className={styles["prep-exam__confidence-labels"]}
+              aria-hidden="true"
+            >
+              {CONFIDENCE_LABELS.map((label) => (
+                <span key={label}>{label}</span>
+              ))}
+            </div>
           <label htmlFor="reasoning">Explain your thinking (optional)</label>
           <textarea id="reasoning" rows={3} maxLength={2000}
             value={answers[question.id]?.reasoning ?? ""}

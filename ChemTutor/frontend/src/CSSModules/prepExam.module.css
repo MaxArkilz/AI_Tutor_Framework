@@ -41,3 +41,45 @@
 .prep-exam a { color: #174b7a; text-decoration: underline; }
 
 .prep-exam { background: #f3f7f8; }
+
+.prep-exam__confidence-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.prep-exam__confidence-value {
+  color: #285d62;
+  font-weight: 600;
+}
+
+.prep-exam__confidence-slider {
+  width: 100%;
+  margin: 0.25rem 0 0;
+  accent-color: #185e62;
+  cursor: pointer;
+}
+
+.prep-exam__confidence-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #3c5a66;
+  font-size: 0.8rem;
+}
+
+.prep-exam__confidence-labels span {
+  flex: 1;
+  text-align: center;
+}
+
+.prep-exam__confidence-labels span:first-child {
+  text-align: left;
+}
+
+.prep-exam__confidence-labels span:last-child {
+  text-align: right;
+}
