@@ -23,7 +23,5 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
+    path('byu/', include('byu_auth.urls'))
 ]
-
-if settings.AUTH_TYPE in ('CAS', 'OKTA'):
-    urlpatterns.append(path('byu/', include('byu_auth.urls')))

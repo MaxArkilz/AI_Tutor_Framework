@@ -133,7 +133,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost:3000",
 ]
 
 # Preserve the existing default user table. A fresh installation may opt into
@@ -143,7 +143,7 @@ AUTH_USER_MODEL = env('AUTH_USER_MODEL', default='auth.User')
 # SSO requires institution-specific credentials. Local development can use
 # Django's session login at /api-auth/login/ without importing SSO views.
 AUTH_TYPE = env('AUTH_TYPE', default='NONE').upper()
-FRONTEND_URL = env('FRONTEND_URL', default='http://localhost:5173')
+FRONTEND_URL = env('FRONTEND_URL', default='http://localhost:3000')
 LOGIN_REDIRECT_URL = '/prep_exam'
 LOGOUT_REDIRECT_URL = '/'
 FACULTY_GROUPS = set(env.list('FACULTY_GROUPS', default=[]))
@@ -156,5 +156,5 @@ for _name in (
     globals()[_name] = env(_name, default='')
 
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
-    'http://localhost:5173', 'http://127.0.0.1:5173',
+    'http://localhost:3000', 'http://127.0.0.1:3000',
 ])
