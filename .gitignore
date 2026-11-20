@@ -1,0 +1,5 @@
+# Local validation environments and isolated test tooling.
+.venv/
+node_modules/
+__pycache__/
+*.pyc

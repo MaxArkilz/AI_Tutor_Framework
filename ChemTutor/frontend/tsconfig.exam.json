@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "types": ["vite/client"] },
+  "include": ["src/pages/PrepExam.tsx", "src/services/examService.ts", "src/types/exam.ts"]
+}

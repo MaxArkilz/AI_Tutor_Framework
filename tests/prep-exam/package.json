@@ -1,0 +1,9 @@
+{
+  "name": "chem-prep-exam-tests",
+  "private": true,
+  "scripts": {
+    "test": "jest --config jest.config.cjs --runInBand",
+    "typecheck": "tsc -p ../../ChemTutor/frontend/tsconfig.exam.json"
+  },
+  "devDependencies": { "jest": "^30.0.0", "typescript": "^5.9.0" }
+}

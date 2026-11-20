@@ -7,73 +7,6 @@ from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, login as django_login, logout as django_logout
 from authlib.integrations.django_client import OAuth
 
-
-### ---- BYU CAS Specific Functions ---- ###
-from requests.structures import CaseInsensitiveDict
-import base64
-import json
-
-# Get the info using the code returned from CAS
-def get_info(code):
-    '''
-    Using the information from the SSO for BYU, uses the API to get information on user.
-
-    Parameters:
-        code (str):     code from BYU after user logs in to BYU, it is returned in the url
-    returns:
-        info (dict):    the info from the API as a dictionary jarbled mess
-    '''
-    url = settings.TOKEN_ENDPOINT
-    headers = CaseInsensitiveDict()
-    client_id = settings.CAS_CLIENT_ID
-    client_secret = settings.CAS_CLIENT_SECRET
-    cas_redirect_uri = settings.CAS_REDIRECT_URI
-    to_encode = f"{client_id}:{client_secret}"
-    urlSafeEncodedBytes = base64.urlsafe_b64encode(to_encode.encode("utf-8"))
-    urlSafeEncodedStr = str(urlSafeEncodedBytes, "utf-8")
-    headers["Content-Type"] = "application/x-www-form-urlencoded"
-    headers["Authorization"] = f"Basic {urlSafeEncodedStr}"
-    data = f"grant_type=authorization_code&code={code}&redirect_uri={cas_redirect_uri}"
-    r = requests.post(url, headers=headers, data=data)
-
-    # Gotten into system, now to access api
-    data = r.json()
-    access_token = data["access_token"]
-    url = "https://api.byu.edu:443/openid-userinfo/v1/userinfo?schema=openid"
-    headers = {
-                "Accept": "application/json",
-                "Authorization": "Bearer " + access_token,
-            }
-    r = requests.get(url, headers=headers)
-    info = json.loads(r.content)
-    
-    return info
-
-
-#Takes code given from CAS, get the user information, and Logs them in
-def logging_in(request):
-    
-    '''
-    Logs the user in and then redierects them to the homepage
-    '''
-    code = request.GET.get('code', None)
-    info = get_info(code)
-    byu_id = info['http://byu.edu/claims/resourceowner_byu_id']
-
-    user_info = get_user_info(byu_id)
-    user = get_or_create_user(user_info)
-    django_login(request, user)
-    return redirect(settings.FRONTEND_URL)
-
-
-# Redirect to the BYU Login
-def to_login(request):
-    '''
-    This builds the URL to access the BYU API, and send the user to it in order to login.
-    '''
-    # Here is the code for getting the API URL patterns. They are quite complex, so it looks really messy
-    return redirect(settings.LOGIN_URL)
-
 #### ---- Okta Specific Views ---- ###
 oauth = OAuth()
 oauth.register(
@@ -166,7 +99,6 @@ def get_or_create_user(user_info):
         user = User.objects.get(username=username)
         user.is_staff = bool(settings.FACULTY_GROUPS.intersection(groups))
         user.is_superuser = bool(settings.ADMIN_GROUPS.intersection(groups))
-        user.is_inspector = bool(settings.INSPECTOR_GROUPS.intersection(groups))
         user.save()
         return user
     else:

@@ -1,0 +1,829 @@
+{
+  "bankVersion": "chem-demo-1",
+  "topics": [
+    {
+      "id": "atomic",
+      "name": "Atomic structure",
+      "nextStep": "Review atomic number, isotopes, and ion electron counts."
+    },
+    {
+      "id": "periodic",
+      "name": "Periodic trends",
+      "nextStep": "Practice valence electrons and explain radius and electronegativity trends."
+    },
+    {
+      "id": "bonding",
+      "name": "Bonding and shape",
+      "nextStep": "Practice Lewis structures, VSEPR, and molecular polarity."
+    },
+    {
+      "id": "stoichiometry",
+      "name": "Moles and stoichiometry",
+      "nextStep": "Practice mass-to-mole conversions and balanced-equation ratios."
+    },
+    {
+      "id": "solutions",
+      "name": "Solutions",
+      "nextStep": "Practice molarity, solution volume, and dilution calculations."
+    },
+    {
+      "id": "acids",
+      "name": "Acids and bases",
+      "nextStep": "Review logarithmic pH, acid strength, and buffers."
+    }
+  ],
+  "questions": [
+    {
+      "id": "atomic-1",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "atomic",
+      "objectiveId": "atomic-number",
+      "difficulty": 1,
+      "prompt": "Which particle count determines the identity of an element?",
+      "points": 1,
+      "options": [
+        {
+          "id": "atomic-1-0",
+          "text": "Protons"
+        },
+        {
+          "id": "atomic-1-1",
+          "text": "Neutrons",
+          "misconceptionId": "identity-is-neutrons"
+        },
+        {
+          "id": "atomic-1-2",
+          "text": "Electrons",
+          "misconceptionId": "identity-is-electrons"
+        },
+        {
+          "id": "atomic-1-3",
+          "text": "Protons plus neutrons",
+          "misconceptionId": "atomic-number-vs-mass-number"
+        }
+      ],
+      "correctOptionId": "atomic-1-0",
+      "explanation": "The atomic number is the number of protons. Changing it changes the element."
+    },
+    {
+      "id": "atomic-2",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "atomic",
+      "objectiveId": "isotopes",
+      "difficulty": 1,
+      "prompt": "Carbon-12 and carbon-14 differ in their number of:",
+      "points": 1,
+      "options": [
+        {
+          "id": "atomic-2-0",
+          "text": "Neutrons"
+        },
+        {
+          "id": "atomic-2-1",
+          "text": "Protons",
+          "misconceptionId": "isotopes-change-element"
+        },
+        {
+          "id": "atomic-2-2",
+          "text": "Protons and electrons",
+          "misconceptionId": "isotopes-vs-ions"
+        },
+        {
+          "id": "atomic-2-3",
+          "text": "Electron shells",
+          "misconceptionId": "isotopes-change-shells"
+        }
+      ],
+      "correctOptionId": "atomic-2-0",
+      "explanation": "Both have six protons; carbon-12 has six neutrons and carbon-14 has eight."
+    },
+    {
+      "id": "atomic-3",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "atomic",
+      "objectiveId": "ion-electrons",
+      "difficulty": 2,
+      "prompt": "A neutral sodium atom has 11 electrons. How many electrons does Na⁺ have?",
+      "points": 1,
+      "options": [
+        {
+          "id": "atomic-3-0",
+          "text": "10"
+        },
+        {
+          "id": "atomic-3-1",
+          "text": "11",
+          "misconceptionId": "ion-electrons-unchanged"
+        },
+        {
+          "id": "atomic-3-2",
+          "text": "12",
+          "misconceptionId": "cation-gains-electrons"
+        },
+        {
+          "id": "atomic-3-3",
+          "text": "1",
+          "misconceptionId": "charge-is-electron-count"
+        }
+      ],
+      "correctOptionId": "atomic-3-0",
+      "explanation": "A +1 ion has lost one electron, so Na⁺ has 10 electrons."
+    },
+    {
+      "id": "atomic-4",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "atomic",
+      "objectiveId": "neutron-count",
+      "difficulty": 2,
+      "prompt": "An atom has atomic number 8 and mass number 18. How many neutrons does it have?",
+      "points": 1,
+      "options": [
+        {
+          "id": "atomic-4-0",
+          "text": "10"
+        },
+        {
+          "id": "atomic-4-1",
+          "text": "8",
+          "misconceptionId": "neutrons-equal-atomic-number"
+        },
+        {
+          "id": "atomic-4-2",
+          "text": "18",
+          "misconceptionId": "neutrons-equal-mass-number"
+        },
+        {
+          "id": "atomic-4-3",
+          "text": "26",
+          "misconceptionId": "add-mass-and-atomic-number"
+        }
+      ],
+      "correctOptionId": "atomic-4-0",
+      "explanation": "Mass number = protons + neutrons, so the neutron count is 18 − 8 = 10."
+    },
+    {
+      "id": "periodic-1",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "periodic",
+      "objectiveId": "valence-electrons",
+      "difficulty": 1,
+      "prompt": "How many valence electrons does a neutral chlorine atom (group 17) have?",
+      "points": 1,
+      "options": [
+        {
+          "id": "periodic-1-0",
+          "text": "7"
+        },
+        {
+          "id": "periodic-1-1",
+          "text": "1",
+          "misconceptionId": "group-vs-missing-valence"
+        },
+        {
+          "id": "periodic-1-2",
+          "text": "17",
+          "misconceptionId": "group-is-valence-count"
+        },
+        {
+          "id": "periodic-1-3",
+          "text": "8",
+          "misconceptionId": "atom-assumed-full-octet"
+        }
+      ],
+      "correctOptionId": "periodic-1-0",
+      "explanation": "Main-group chlorine has seven electrons in its outermost occupied shell."
+    },
+    {
+      "id": "periodic-2",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "periodic",
+      "objectiveId": "radius-down-group",
+      "difficulty": 1,
+      "prompt": "Which neutral atom has the largest atomic radius: Li, Na, K, or Rb?",
+      "points": 1,
+      "options": [
+        {
+          "id": "periodic-2-0",
+          "text": "Rb"
+        },
+        {
+          "id": "periodic-2-1",
+          "text": "Li",
+          "misconceptionId": "radius-down-group-reversed"
+        },
+        {
+          "id": "periodic-2-2",
+          "text": "Na",
+          "misconceptionId": "radius-down-group-uncertain"
+        },
+        {
+          "id": "periodic-2-3",
+          "text": "K",
+          "misconceptionId": "radius-down-group-uncertain"
+        }
+      ],
+      "correctOptionId": "periodic-2-0",
+      "explanation": "Radius generally increases down a group as occupied electron shells are added."
+    },
+    {
+      "id": "periodic-3",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "periodic",
+      "objectiveId": "electronegativity",
+      "difficulty": 2,
+      "prompt": "Which atom has the highest electronegativity: C, N, O, or F?",
+      "points": 1,
+      "options": [
+        {
+          "id": "periodic-3-0",
+          "text": "F"
+        },
+        {
+          "id": "periodic-3-1",
+          "text": "C",
+          "misconceptionId": "electronegativity-across-period-reversed"
+        },
+        {
+          "id": "periodic-3-2",
+          "text": "N",
+          "misconceptionId": "electronegativity-across-period-uncertain"
+        },
+        {
+          "id": "periodic-3-3",
+          "text": "O",
+          "misconceptionId": "electronegativity-across-period-uncertain"
+        }
+      ],
+      "correctOptionId": "periodic-3-0",
+      "explanation": "Electronegativity generally increases across this period; fluorine is the highest."
+    },
+    {
+      "id": "periodic-4",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "periodic",
+      "objectiveId": "radius-across-period",
+      "difficulty": 2,
+      "prompt": "Across period 3 from Na to Cl, atomic radius generally:",
+      "points": 1,
+      "options": [
+        {
+          "id": "periodic-4-0",
+          "text": "Decreases"
+        },
+        {
+          "id": "periodic-4-1",
+          "text": "Increases",
+          "misconceptionId": "radius-across-period-reversed"
+        },
+        {
+          "id": "periodic-4-2",
+          "text": "Stays constant",
+          "misconceptionId": "effective-nuclear-charge-ignored"
+        },
+        {
+          "id": "periodic-4-3",
+          "text": "Doubles at each element",
+          "misconceptionId": "radius-trend-exponential"
+        }
+      ],
+      "correctOptionId": "periodic-4-0",
+      "explanation": "Increasing effective nuclear charge generally pulls the electrons closer across a period."
+    },
+    {
+      "id": "bonding-1",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "bonding",
+      "objectiveId": "ionic-bonding",
+      "difficulty": 1,
+      "prompt": "Solid NaCl is best described as:",
+      "points": 1,
+      "options": [
+        {
+          "id": "bonding-1-0",
+          "text": "An ionic lattice of Na⁺ and Cl⁻"
+        },
+        {
+          "id": "bonding-1-1",
+          "text": "Separate NaCl molecules with nonpolar bonds",
+          "misconceptionId": "ionic-solid-is-molecular"
+        },
+        {
+          "id": "bonding-1-2",
+          "text": "A metallic lattice",
+          "misconceptionId": "ionic-vs-metallic"
+        },
+        {
+          "id": "bonding-1-3",
+          "text": "Unbonded neutral atoms",
+          "misconceptionId": "ions-not-recognized"
+        }
+      ],
+      "correctOptionId": "bonding-1-0",
+      "explanation": "Solid sodium chloride consists of oppositely charged ions in an extended ionic lattice."
+    },
+    {
+      "id": "bonding-2",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "bonding",
+      "objectiveId": "covalent-bonding",
+      "difficulty": 1,
+      "prompt": "A covalent bond involves:",
+      "points": 1,
+      "options": [
+        {
+          "id": "bonding-2-0",
+          "text": "Shared electron density between atoms"
+        },
+        {
+          "id": "bonding-2-1",
+          "text": "Sharing protons",
+          "misconceptionId": "bonding-shares-protons"
+        },
+        {
+          "id": "bonding-2-2",
+          "text": "Transferring neutrons",
+          "misconceptionId": "bonding-transfers-neutrons"
+        },
+        {
+          "id": "bonding-2-3",
+          "text": "Only attraction between separate ions",
+          "misconceptionId": "covalent-vs-ionic"
+        }
+      ],
+      "correctOptionId": "bonding-2-0",
+      "explanation": "Covalent bonding involves shared electron density between bonded atoms."
+    },
+    {
+      "id": "bonding-3",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "bonding",
+      "objectiveId": "vsepr-water",
+      "difficulty": 2,
+      "prompt": "What is the molecular geometry of H₂O?",
+      "points": 1,
+      "options": [
+        {
+          "id": "bonding-3-0",
+          "text": "Bent"
+        },
+        {
+          "id": "bonding-3-1",
+          "text": "Linear",
+          "misconceptionId": "electron-domains-ignore-lone-pairs"
+        },
+        {
+          "id": "bonding-3-2",
+          "text": "Trigonal planar",
+          "misconceptionId": "water-domain-count"
+        },
+        {
+          "id": "bonding-3-3",
+          "text": "Tetrahedral",
+          "misconceptionId": "electron-vs-molecular-geometry"
+        }
+      ],
+      "correctOptionId": "bonding-3-0",
+      "explanation": "Oxygen has two bonds and two lone pairs. Its electron-domain geometry is tetrahedral, but its molecular geometry is bent."
+    },
+    {
+      "id": "bonding-4",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "bonding",
+      "objectiveId": "molecular-polarity",
+      "difficulty": 2,
+      "prompt": "Why is a CO₂ molecule nonpolar despite its polar C=O bonds?",
+      "points": 1,
+      "options": [
+        {
+          "id": "bonding-4-0",
+          "text": "Its linear geometry makes the bond dipoles cancel"
+        },
+        {
+          "id": "bonding-4-1",
+          "text": "Carbon and oxygen have equal electronegativity",
+          "misconceptionId": "polar-bonds-not-recognized"
+        },
+        {
+          "id": "bonding-4-2",
+          "text": "Every molecule with polar bonds is nonpolar",
+          "misconceptionId": "bond-vs-molecular-polarity"
+        },
+        {
+          "id": "bonding-4-3",
+          "text": "Double bonds cannot be polar",
+          "misconceptionId": "multiple-bonds-nonpolar"
+        }
+      ],
+      "correctOptionId": "bonding-4-0",
+      "explanation": "CO₂ is linear and symmetric, so its equal, opposite bond dipoles cancel."
+    },
+    {
+      "id": "stoich-1",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "stoichiometry",
+      "objectiveId": "mass-to-moles",
+      "difficulty": 1,
+      "prompt": "Using a molar mass of 18.0 g/mol, how many moles are in 36.0 g of H₂O?",
+      "points": 1,
+      "options": [
+        {
+          "id": "stoich-1-0",
+          "text": "2.00 mol"
+        },
+        {
+          "id": "stoich-1-1",
+          "text": "0.500 mol",
+          "misconceptionId": "mass-to-moles-inverted"
+        },
+        {
+          "id": "stoich-1-2",
+          "text": "648 mol",
+          "misconceptionId": "mass-to-moles-multiply"
+        },
+        {
+          "id": "stoich-1-3",
+          "text": "36.0 mol",
+          "misconceptionId": "grams-equal-moles"
+        }
+      ],
+      "correctOptionId": "stoich-1-0",
+      "explanation": "Amount = mass / molar mass = 36.0 / 18.0 = 2.00 mol."
+    },
+    {
+      "id": "stoich-2",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "stoichiometry",
+      "objectiveId": "mole-ratios",
+      "difficulty": 2,
+      "prompt": "For N₂ + 3 H₂ → 2 NH₃, how much NH₃ can 6.0 mol H₂ produce with excess N₂?",
+      "points": 1,
+      "options": [
+        {
+          "id": "stoich-2-0",
+          "text": "4.0 mol"
+        },
+        {
+          "id": "stoich-2-1",
+          "text": "6.0 mol",
+          "misconceptionId": "coefficients-ignored"
+        },
+        {
+          "id": "stoich-2-2",
+          "text": "9.0 mol",
+          "misconceptionId": "mole-ratio-inverted"
+        },
+        {
+          "id": "stoich-2-3",
+          "text": "12 mol",
+          "misconceptionId": "reactant-coefficient-ignored"
+        }
+      ],
+      "correctOptionId": "stoich-2-0",
+      "explanation": "6.0 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 4.0 mol NH₃."
+    },
+    {
+      "id": "stoich-3",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "stoichiometry",
+      "objectiveId": "limiting-reactant",
+      "difficulty": 2,
+      "prompt": "For 2 H₂ + O₂ → 2 H₂O, 3.0 mol H₂ reacts with 2.0 mol O₂. Which reactant is limiting?",
+      "points": 1,
+      "options": [
+        {
+          "id": "stoich-3-0",
+          "text": "H₂"
+        },
+        {
+          "id": "stoich-3-1",
+          "text": "O₂",
+          "misconceptionId": "smallest-mole-amount-is-limiting"
+        },
+        {
+          "id": "stoich-3-2",
+          "text": "Both are exactly consumed",
+          "misconceptionId": "stoichiometric-ratio-ignored"
+        },
+        {
+          "id": "stoich-3-3",
+          "text": "Neither limits production",
+          "misconceptionId": "limiting-reactant-not-recognized"
+        }
+      ],
+      "correctOptionId": "stoich-3-0",
+      "explanation": "3.0 mol H₂ needs 1.5 mol O₂. There is more O₂ than required, so H₂ is limiting."
+    },
+    {
+      "id": "stoich-4",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "stoichiometry",
+      "objectiveId": "balance-equations",
+      "difficulty": 1,
+      "prompt": "What coefficients balance Al + O₂ → Al₂O₃, in that order, using the smallest positive whole numbers?",
+      "points": 1,
+      "options": [
+        {
+          "id": "stoich-4-0",
+          "text": "4, 3, 2"
+        },
+        {
+          "id": "stoich-4-1",
+          "text": "2, 3, 1",
+          "misconceptionId": "oxygen-atoms-not-conserved"
+        },
+        {
+          "id": "stoich-4-2",
+          "text": "2, 1, 1",
+          "misconceptionId": "oxygen-subscripts-ignored"
+        },
+        {
+          "id": "stoich-4-3",
+          "text": "1, 1, 1",
+          "misconceptionId": "equation-assumed-balanced"
+        }
+      ],
+      "correctOptionId": "stoich-4-0",
+      "explanation": "4 Al + 3 O₂ → 2 Al₂O₃ conserves four Al atoms and six O atoms on each side."
+    },
+    {
+      "id": "solutions-1",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "solutions",
+      "objectiveId": "molarity",
+      "difficulty": 1,
+      "prompt": "What is the molarity of 0.50 mol solute in a final solution volume of 2.0 L?",
+      "points": 1,
+      "options": [
+        {
+          "id": "solutions-1-0",
+          "text": "0.25 M"
+        },
+        {
+          "id": "solutions-1-1",
+          "text": "1.0 M",
+          "misconceptionId": "molarity-multiply"
+        },
+        {
+          "id": "solutions-1-2",
+          "text": "4.0 M",
+          "misconceptionId": "molarity-inverted"
+        },
+        {
+          "id": "solutions-1-3",
+          "text": "2.5 M",
+          "misconceptionId": "molarity-add"
+        }
+      ],
+      "correctOptionId": "solutions-1-0",
+      "explanation": "Molarity = moles solute / liters solution = 0.50 / 2.0 = 0.25 M."
+    },
+    {
+      "id": "solutions-2",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "solutions",
+      "objectiveId": "dilution",
+      "difficulty": 2,
+      "prompt": "100.0 mL of 2.00 M solution is diluted to a total volume of 500.0 mL. What is the final molarity?",
+      "points": 1,
+      "options": [
+        {
+          "id": "solutions-2-0",
+          "text": "0.400 M"
+        },
+        {
+          "id": "solutions-2-1",
+          "text": "10.0 M",
+          "misconceptionId": "dilution-increases-concentration"
+        },
+        {
+          "id": "solutions-2-2",
+          "text": "0.500 M",
+          "misconceptionId": "dilution-uses-added-volume"
+        },
+        {
+          "id": "solutions-2-3",
+          "text": "2.00 M",
+          "misconceptionId": "dilution-no-change"
+        }
+      ],
+      "correctOptionId": "solutions-2-0",
+      "explanation": "With solute conserved, M₁V₁ = M₂V₂: M₂ = 2.00 × 100.0 / 500.0 = 0.400 M."
+    },
+    {
+      "id": "solutions-3",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "solutions",
+      "objectiveId": "moles-from-molarity",
+      "difficulty": 2,
+      "prompt": "How many moles of solute are in 250.0 mL of a 0.200 M solution?",
+      "points": 1,
+      "options": [
+        {
+          "id": "solutions-3-0",
+          "text": "0.0500 mol"
+        },
+        {
+          "id": "solutions-3-1",
+          "text": "50.0 mol",
+          "misconceptionId": "milliliters-not-converted"
+        },
+        {
+          "id": "solutions-3-2",
+          "text": "0.800 mol",
+          "misconceptionId": "moles-from-molarity-divide"
+        },
+        {
+          "id": "solutions-3-3",
+          "text": "1.25 mol",
+          "misconceptionId": "volume-over-molarity"
+        }
+      ],
+      "correctOptionId": "solutions-3-0",
+      "explanation": "250.0 mL = 0.2500 L; amount = 0.200 mol/L × 0.2500 L = 0.0500 mol."
+    },
+    {
+      "id": "solutions-4",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "solutions",
+      "objectiveId": "solution-volume",
+      "difficulty": 1,
+      "prompt": "When preparing a 1.00 L volumetric solution, you should:",
+      "points": 1,
+      "options": [
+        {
+          "id": "solutions-4-0",
+          "text": "Dissolve the solute, then add solvent until the final solution volume is 1.00 L"
+        },
+        {
+          "id": "solutions-4-1",
+          "text": "Add solute to exactly 1.00 L of solvent",
+          "misconceptionId": "solution-vs-solvent-volume"
+        },
+        {
+          "id": "solutions-4-2",
+          "text": "Use 1.00 kg of solvent for any solute",
+          "misconceptionId": "mass-equals-solution-volume"
+        },
+        {
+          "id": "solutions-4-3",
+          "text": "Ignore volume after dissolving",
+          "misconceptionId": "molarity-volume-irrelevant"
+        }
+      ],
+      "correctOptionId": "solutions-4-0",
+      "explanation": "Molarity uses the final solution volume, which is not generally the initial solvent volume."
+    },
+    {
+      "id": "acids-1",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "acids",
+      "objectiveId": "ph-from-concentration",
+      "difficulty": 1,
+      "prompt": "For an ideal dilute solution with [H₃O⁺] = 1.0 × 10⁻³ M, what is the pH?",
+      "points": 1,
+      "options": [
+        {
+          "id": "acids-1-0",
+          "text": "3.00"
+        },
+        {
+          "id": "acids-1-1",
+          "text": "−3.00",
+          "misconceptionId": "ph-sign-error"
+        },
+        {
+          "id": "acids-1-2",
+          "text": "11.00",
+          "misconceptionId": "ph-vs-poh"
+        },
+        {
+          "id": "acids-1-3",
+          "text": "0.001",
+          "misconceptionId": "ph-equals-concentration"
+        }
+      ],
+      "correctOptionId": "acids-1-0",
+      "explanation": "For this dilute-solution calculation, pH = −log₁₀[H₃O⁺] = 3.00."
+    },
+    {
+      "id": "acids-2",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "acids",
+      "objectiveId": "ph-and-poh",
+      "difficulty": 1,
+      "prompt": "In dilute aqueous solution at 25 °C, a solution has pH 9.00. What is its pOH?",
+      "points": 1,
+      "options": [
+        {
+          "id": "acids-2-0",
+          "text": "5.00"
+        },
+        {
+          "id": "acids-2-1",
+          "text": "9.00",
+          "misconceptionId": "ph-equals-poh"
+        },
+        {
+          "id": "acids-2-2",
+          "text": "−9.00",
+          "misconceptionId": "poh-is-negative-ph"
+        },
+        {
+          "id": "acids-2-3",
+          "text": "14.00",
+          "misconceptionId": "poh-always-fourteen"
+        }
+      ],
+      "correctOptionId": "acids-2-0",
+      "explanation": "At 25 °C, pH + pOH ≈ 14.00, so pOH = 5.00."
+    },
+    {
+      "id": "acids-3",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "acids",
+      "objectiveId": "strength-vs-concentration",
+      "difficulty": 2,
+      "prompt": "Calling HCl a strong acid in dilute aqueous solution means that it:",
+      "points": 1,
+      "options": [
+        {
+          "id": "acids-3-0",
+          "text": "Ionizes essentially completely in water"
+        },
+        {
+          "id": "acids-3-1",
+          "text": "Must have a high concentration",
+          "misconceptionId": "acid-strength-vs-concentration"
+        },
+        {
+          "id": "acids-3-2",
+          "text": "Always has pH exactly zero",
+          "misconceptionId": "strong-acid-fixed-ph"
+        },
+        {
+          "id": "acids-3-3",
+          "text": "Cannot be diluted",
+          "misconceptionId": "acid-strength-prevents-dilution"
+        }
+      ],
+      "correctOptionId": "acids-3-0",
+      "explanation": "Strength describes the extent of ionization, while concentration describes amount per volume."
+    },
+    {
+      "id": "acids-4",
+      "version": 1,
+      "type": "single-choice",
+      "topicId": "acids",
+      "objectiveId": "buffer-composition",
+      "difficulty": 2,
+      "prompt": "Which pair can form a buffer when appreciable amounts of both components are present?",
+      "points": 1,
+      "options": [
+        {
+          "id": "acids-4-0",
+          "text": "CH₃COOH and CH₃COO⁻"
+        },
+        {
+          "id": "acids-4-1",
+          "text": "HCl and NaCl",
+          "misconceptionId": "strong-acid-buffer"
+        },
+        {
+          "id": "acids-4-2",
+          "text": "NaCl and KCl",
+          "misconceptionId": "any-salt-pair-buffer"
+        },
+        {
+          "id": "acids-4-3",
+          "text": "HCl and HNO₃",
+          "misconceptionId": "two-strong-acids-buffer"
+        }
+      ],
+      "correctOptionId": "acids-4-0",
+      "explanation": "A weak acid and its conjugate base can resist small additions of acid or base."
+    }
+  ]
+}

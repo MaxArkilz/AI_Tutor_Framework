@@ -1,0 +1,66 @@
+name: Prep exam checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        user_model: ['auth.User', 'byu_auth.NewUser']
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: chem_tutor_test
+          POSTGRES_USER: chem_tutor_test
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U chem_tutor_test"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DB_ENGINE: postgresql
+      DB_NAME: chem_tutor_test
+      DB_USER: chem_tutor_test
+      DB_PASSWORD: ci-only-password
+      DB_HOST: localhost
+      DB_PORT: '5432'
+      AUTH_TYPE: NONE
+      AUTH_USER_MODEL: ${{ matrix.user_model }}
+    defaults:
+      run:
+        working-directory: ChemTutor/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: pip install -r requirements.txt
+      - run: python manage.py makemigrations --check --dry-run --settings=config.test_settings
+      - run: python manage.py test assessments --settings=config.test_settings
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: ChemTutor/frontend/package-lock.json
+      - run: npm ci
+        working-directory: ChemTutor/frontend
+      - run: npm install
+        working-directory: tests/prep-exam
+      - run: npm test
+        working-directory: tests/prep-exam
+      - run: npm run typecheck
+        working-directory: tests/prep-exam
+      - run: npm run build
+        working-directory: ChemTutor/frontend
